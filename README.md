@@ -50,6 +50,26 @@ source .venv/bin/activate  # On Linux/macOS
 .venv\Scripts\activate     # On Windows
 ```
 
+## GPU Support
+
+This project uses PyTorch with CUDA 12.8+ support for RTX 5070 TI compatibility.
+
+- **GPU**: NVIDIA RTX 5070 TI (16GB VRAM)
+- **PyTorch**: 2.7.1+cu128 (CUDA 12.8 build)
+- **Status**: ✅ **FULLY WORKING** - RTX 5070 TI sm_120 support is working!
+- **Performance**: All GPU operations, matrix multiplication, and gradient computation working perfectly
+
+To test GPU functionality:
+```bash
+python test_gpu_rtx5070ti.py
+```
+
+### Installation Notes
+The key was using the CUDA 12.8 PyTorch build instead of the nightly builds:
+```bash
+uv pip install --prerelease=allow torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 --index-strategy unsafe-best-match
+```
+
 ## Usage
 
 [Add usage instructions here]

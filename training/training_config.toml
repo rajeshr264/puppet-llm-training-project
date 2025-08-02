@@ -1,0 +1,43 @@
+# Puppet LLM Training Configuration
+# Optimized for RTX 5070 TI (16GB VRAM) with QLoRA
+
+[model]
+base_model_path = "./stable-code-3b-base"
+output_dir = "./puppet-finetuned-model"
+
+[data]
+training_data = "../data_processing/puppet_training_data.json"
+test_data = "../data_processing/puppet_test_data.json"
+max_sequence_length = 512
+
+[quantization]
+load_in_4bit = true
+bnb_4bit_use_double_quant = true
+bnb_4bit_quant_type = "nf4"
+bnb_4bit_compute_dtype = "bfloat16"
+
+[lora]
+r = 32
+lora_alpha = 64
+target_modules = ["q_proj", "v_proj", "k_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+lora_dropout = 0.05
+bias = "none"
+
+[training]
+num_train_epochs = 5
+per_device_train_batch_size = 2
+gradient_accumulation_steps = 8
+learning_rate = 1e-4
+weight_decay = 0.01
+warmup_steps = 50
+max_grad_norm = 1.0
+fp16 = true
+save_steps = 50
+logging_steps = 5
+seed = 42
+
+[generation]
+max_length = 200
+temperature = 0.7
+do_sample = true
+num_return_sequences = 1

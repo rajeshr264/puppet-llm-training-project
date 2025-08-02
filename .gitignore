@@ -198,7 +198,6 @@ tensorboard_logs/
 # Large data files (adjust patterns as needed)
 *.csv
 *.tsv
-*.json
 *.jsonl
 *.parquet
 *.arrow
@@ -211,13 +210,9 @@ tensorboard_logs/
 *.7z
 *.rar
 
-# Model files (adjust as needed for your specific models)
-*.bin
-*.safetensors
+# Model files (handled in project-specific section below)
 *.gguf
 *.ggml
-*.pth
-*.pt
 *.ckpt
 
 # Temporary files
@@ -238,3 +233,21 @@ tensorboard_logs/
 # raw_data/
 # processed_data/
 # models/
+
+# Large files and copyrighted content
+data_collection/puppet_8_book.pdf
+training/stable-code-3b-base/
+
+# Generated data files (JSON outputs from training/processing)
+data_processing/*.json
+data_collection/*/*.json
+processed_data/*.json
+evaluation/*.json
+!*_config.json
+!pyproject.toml
+
+# Model files and checkpoints (keep structure but not weights)
+training/puppet-finetuned-model/
+training/puppet-model-*/
+!training/puppet-model-*/README.md
+!training/puppet-finetuned-model/README.md

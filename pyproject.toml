@@ -5,9 +5,6 @@ description = "A machine learning project for training language models on Puppet
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "torch",
-    "torchvision", 
-    "torchaudio",
     "transformers==4.36.0",
     "datasets==2.14.0",
     "accelerate==0.24.0",
@@ -51,6 +48,10 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv]
+index-url = "https://pypi.org/simple"
+extra-index-url = ["https://download.pytorch.org/whl/cu128"]
+# RTX 5070 TI (sm_120) now supported with PyTorch 2.7.1+cu128!
+# Successfully using CUDA 12.8 build with full GPU functionality
 dev-dependencies = [
     "pytest>=7.0",
     "black>=23.0",
